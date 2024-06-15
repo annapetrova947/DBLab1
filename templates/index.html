@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab1DB</title>
+    <link rel="stylesheet" href="./../static/css/main.css">
+</head>
+<body>
+    <table>
+        <tr>
+            <th>id_individual</th>
+            <th>id_borrowers</th>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>surname</th>
+            <th>passport</th>
+            <th>inn</th>
+            <th>snils</th>
+            <th>driver_license</th>
+            <th>additional_docs</th>
+            <th>comment</th>
+            <th>actions</th>
+        </tr>
+        {{range .}}
+        <tr>
+            <td>{{.ID}}</td>
+            <td class="editable">{{.BorrowerID}}</td>
+            <td class="editable">{{.FirstName}}</td>
+            <td class="editable">{{.LastName}}</td>
+            <td class="editable">{{.Surname}}</td>
+            <td class="editable">{{.Passport}}</td>
+            <td class="editable">{{.INN}}</td>
+            <td class="editable">{{.SNILS}}</td>
+            <td class="editable">{{.DriverLicense}}</td>
+            <td class="editable">{{.AdditionalDocs}}</td>
+            <td class="editable">{{.Comment}}</td>
+            <td>
+                <button class="edit-btn" data-id="{{.ID}}">✏️</button>
+                <button class="delete-btn" data-id="{{.ID}}">🗑️</button>
+            </td>
+        </tr>
+        {{end}}
+    </table>
+    <h2>Добавить новую запись</h2>
+    <form action="/add" method="post">
+        <label for="borrowerID">id_borrowers:</label>
+        <input type="text" id="borrowerID" name="borrowerID" required><br>
+        <label for="firstName">first_name:</label>
+        <input type="text" id="firstName" name="firstName" required><br>
+        <label for="lastName">last_name:</label>
+        <input type="text" id="lastName" name="lastName" required><br>
+        <label for="surname">surname:</label>
+        <input type="text" id="surname" name="surname" required><br>
+        <label for="passport">passport:</label>
+        <input type="text" id="passport" name="passport" required><br>
+        <label for="inn">inn:</label>
+        <input type="text" id="inn" name="inn"><br>
+        <label for="snils">snils:</label>
+        <input type="text" id="snils" name="snils"><br>
+        <label for="driverLicense">driver_license:</label>
+        <input type="text" id="driverLicense" name="driverLicense"><br>
+        <label for="additionalDocs">additional_docs:</label>
+        <input type="text" id="additionalDocs" name="additionalDocs"><br>
+        <label for="comment">comment:</label>
+        <input type="text" id="comment" name="comment"><br>
+        <button type="submit">Добавить</button>
+    </form>
+
+    <!-- Модальное окно -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Отредактировать строку</h2>
+            <form id="editForm" action="/edit" method="post">
+                <input type="hidden" id="editId" name="id">
+                <label for="editBorrowerID">id_borrowers:</label>
+                <input type="text" id="editBorrowerID" name="borrowerID" required><br>
+                <label for="editFirstName">first_name:</label>
+                <input type="text" id="editFirstName" name="firstName" required><br>
+                <label for="editLastName">last_name:</label>
+                <input type="text" id="editLastName" name="lastName" required><br>
+                <label for="editSurname">surname:</label>
+                <input type="text" id="editSurname" name="surname" required><br>
+                <label for="editPassport">passport:</label>
+                <input type="text" id="editPassport" name="passport" required><br>
+                <label for="editINN">inn:</label>
+                <input type="text" id="editINN" name="inn"><br>
+                <label for="editSNILS">snils:</label>
+                <input type="text" id="editSNILS" name="snils"><br>
+                <label for="editDriverLicense">driver_license:</label>
+                <input type="text" id="editDriverLicense" name="driverLicense"><br>
+                <label for="editAdditionalDocs">additional_docs:</label>
+                <input type="text" id="editAdditionalDocs" name="additionalDocs"><br>
+                <label for="editComment">comment:</label>
+                <input type="text" id="editComment" name="comment"><br>
+                <button type="submit">Отредактировать</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
